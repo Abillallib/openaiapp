@@ -78,7 +78,7 @@ elif selected_tab == "🖼️ Vision":
                 )
 
                 if response and hasattr(response, "choices"):
-                    st.image(image_url, caption="Analyzed Image", use_column_width=True)
+                    st.image(image_url, caption="Analyzed Image", use_container_width=True)
                     st.success(response.choices[0].message.content)
                 else:
                     st.error("Failed to generate response. Please check your API key or image URL.")
@@ -108,7 +108,7 @@ elif selected_tab == "🎨 Image Generation":
 
                 if response and hasattr(response, "data"):
                     image_url = response.data[0].url
-                    st.image(image_url, caption="Generated Image", use_column_width=True)
+                    st.image(image_url, caption="Generated Image", use_container_width=True)
                     st.success("✅ Image generated successfully!")
                 else:
                     st.error("⚠ Failed to generate image. Please try again.")
