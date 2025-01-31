@@ -115,7 +115,80 @@ elif selected_tab == "🎨 Image Generation":
 
             except Exception as e:
                 st.error(f"Error: {str(e)}")
+                
+elif selected_tab == "🔊 Audio Generation":
+    st.title("🔊 AI Audio Generation")
 
+    prompt = st.text_area("Enter text to convert to speech:", "Hello, how are you?")
+
+    if st.button("Generate Audio"):
+        if not openai_api_key.startswith('sk-'):
+            st.warning("⚠ Please enter a valid OpenAI API key!", icon="⚠")
+        else:
+            try:
+                # OpenAI API call for text-to-speech generation (or a similar model)
+                import openai
+                openai.api_key = openai_api_key
+
+                response = openai.Audio.create(
+                    model="whisper-1",  # Ensure this is the correct model for text-to-speech (or similar)
+                    text=prompt
+                )
+                
+                # Assuming the response includes an audio file URL or data
+                audio_url = response['audio_url']
+                st.audio(audio_url, format="audio/mp3")
+                st.success("✅ Audio generated successfully!")
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
+
+elif selected_tab == "🎙 Speech to Text":
+    st.title("🎙 Speech to Text")
+
+    st.write("Click the button to record your speech and convert it to text.")
+
+    # Button for recording audio
+    if st.button("Start Recording"):
+        # Using Streamlit's native audio file input for demo purpose
+        audio_file = st.file_uploader("Upload your audio file", type=["mp3", "wav", "m4a"])
+
+        if audio_file:
+            try:
+                openai.api_key = openai_api_key
+
+                audio_data = audio_file.read()
+                audio_b64 = base64.b64encode(audio_data).decode('utf-8')
+
+                response = openai.Audio.transcribe(
+                    model="whisper-1",
+                    file=audio_b64
+                )
+                st.write("Transcribed Text: ", response['text'])
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
+                
+elif selected_tab == "🛑 Moderation":
+    st.title("🛑 Content Moderation")
+
+    text_to_moderate = st.text_area("Enter text for moderation:", "This is a sample text to check for harmful content.")
+
+    if st.button("Moderate Text"):
+        if not openai_api_key.startswith('sk-'):
+            st.warning("⚠ Please enter a valid OpenAI API key!", icon="⚠")
+        else:
+            try:
+                openai.api_key = openai_api_key
+                response = openai.Moderation.create(
+                    input=text_to_moderate
+                )
+
+                if response['results'][0]['flagged']:
+                    st.warning("⚠ This content has been flagged as inappropriate.")
+                else:
+                    st.success("✅ This content is safe.")
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
+                
 elif selected_tab == "🛠 Functions":
     st.title("🛠 AI Functions (Tool Calling)")
 
