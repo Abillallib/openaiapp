@@ -17,7 +17,9 @@ def set_page_style():
             .css-1d391kg { background-color: #003366 !important; color: white !important; }
             .stButton>button { background-color: #ff6600 !important; color: white !important; }
             .stTextInput>div>div>input { border: 2px solid #003366 !important; }
-            .stSelectbox>div>div>select { border: 2px solid #003366 !important; }
+            .stSelectbox>div>div>select { 
+                background-color: #ADD8E6 !important; /* Light Blue background */
+                color: black !important; /* Text color */}
         </style>
         """,
         unsafe_allow_html=True
