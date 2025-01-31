@@ -150,22 +150,22 @@ elif selected_tab == "🎙 Speech to Text":
     # Button for recording audio
     if st.button("Start Recording"):
     
-    audio_file = st.file_uploader("Upload your audio file", type=["mp3", "wav", "m4a"])
-
-    if audio_file:
-        try:
-            openai.api_key = openai_api_key
-
-            # Instead of encoding the file in base64, just pass the file directly
-            response = openai.Audio.transcribe(
-                model="whisper-1",
-                file=audio_file
-            )
-
-            # Assuming response contains 'text' for the transcribed text
-            st.write("Transcribed Text: ", response['text'])
-        except Exception as e:
-            st.error(f"Error: {str(e)}")
+        audio_file = st.file_uploader("Upload your audio file", type=["mp3", "wav", "m4a"])
+    
+        if audio_file:
+            try:
+                openai.api_key = openai_api_key
+    
+                # Instead of encoding the file in base64, just pass the file directly
+                response = openai.Audio.transcribe(
+                    model="whisper-1",
+                    file=audio_file
+                )
+    
+                # Assuming response contains 'text' for the transcribed text
+                st.write("Transcribed Text: ", response['text'])
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
                 
 elif selected_tab == "🛑 Moderation":
     st.title("🛑 Content Moderation")
