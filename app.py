@@ -5,6 +5,8 @@ import base64
 from langchain_community.llms import OpenAI
 from openai import OpenAI as OpenAIClient
 
+st.image("https://static.vecteezy.com/system/resources/thumbnails/001/958/322/small/light-orange-abstract-blur-background-vector.jpg", caption="AI-Powered Streamlit App")
+
 def set_page_style():
     st.markdown(
         """
