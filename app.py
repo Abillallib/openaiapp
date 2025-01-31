@@ -4,6 +4,7 @@ import json
 import base64
 from langchain_community.llms import OpenAI
 from openai import OpenAI as OpenAIClient
+import openai
 
 st.image("https://wp-dashboard.magnifi.ai/wp-content/uploads/2023/10/Artificial-Intelligence-in-Indonesia-The-current-state-and-its-opportunities.jpeg", caption="AI-Powered Streamlit App")
 
