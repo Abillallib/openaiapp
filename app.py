@@ -5,6 +5,25 @@ import base64
 from langchain_community.llms import OpenAI
 from openai import OpenAI as OpenAIClient
 
+def set_page_style():
+    st.markdown(
+        """
+        <style>
+            body { background-color: #ffffff; }
+            .stApp { background-color: #ffffff; }
+            .stSidebar { background-color: #003366; color: white; }
+            .css-1d391kg { background-color: #003366 !important; color: white !important; }
+            .stButton>button { background-color: #ff6600 !important; color: white !important; }
+            .stTextInput>div>div>input { border: 2px solid #003366 !important; }
+            .stSelectbox>div>div>select { border: 2px solid #003366 !important; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+set_page_style()
+
+
 # Sidebar - OpenAI API Key Input
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
