@@ -149,23 +149,23 @@ elif selected_tab == "🎙 Speech to Text":
 
     # Button for recording audio
     if st.button("Start Recording"):
-        # Using Streamlit's native audio file input for demo purpose
-        audio_file = st.file_uploader("Upload your audio file", type=["mp3", "wav", "m4a"])
+    
+    audio_file = st.file_uploader("Upload your audio file", type=["mp3", "wav", "m4a"])
 
-        if audio_file:
-            try:
-                openai.api_key = openai_api_key
+    if audio_file:
+        try:
+            openai.api_key = openai_api_key
 
-                audio_data = audio_file.read()
-                audio_b64 = base64.b64encode(audio_data).decode('utf-8')
+            # Instead of encoding the file in base64, just pass the file directly
+            response = openai.Audio.transcribe(
+                model="whisper-1",
+                file=audio_file
+            )
 
-                response = openai.Audio.transcribe(
-                    model="whisper-1",
-                    file=audio_b64
-                )
-                st.write("Transcribed Text: ", response['text'])
-            except Exception as e:
-                st.error(f"Error: {str(e)}")
+            # Assuming response contains 'text' for the transcribed text
+            st.write("Transcribed Text: ", response['text'])
+        except Exception as e:
+            st.error(f"Error: {str(e)}")
                 
 elif selected_tab == "🛑 Moderation":
     st.title("🛑 Content Moderation")
