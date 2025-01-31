@@ -5,7 +5,7 @@ import base64
 from langchain_community.llms import OpenAI
 from openai import OpenAI as OpenAIClient
 
-st.image("https://wallpapers.com/images/hd/orange-and-yellow-1920-x-1080-background-b31i1sxeq2wxtjme.jpg", caption="AI-Powered Streamlit App")
+st.image("https://wp-dashboard.magnifi.ai/wp-content/uploads/2023/10/Artificial-Intelligence-in-Indonesia-The-current-state-and-its-opportunities.jpeg", caption="AI-Powered Streamlit App")
 
 def set_page_style():
     st.markdown(
