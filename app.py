@@ -25,7 +25,8 @@ set_page_style()
 
 
 # Sidebar - OpenAI API Key Input
-openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
+st.sidebar.markdown("<h4 style='color: white; font-weight: bold; font-family: Arial;'>OpenAI API Key</h4>", unsafe_allow_html=True)
+openai_api_key = st.sidebar.text_input("", type='password')
 
 # Dropdown Menu for Navigation
 selected_tab = st.selectbox(
